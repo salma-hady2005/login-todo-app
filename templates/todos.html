@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My To-Do List</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>{{ session["name"] }}'s To-Do List</h1>
+        <button type="button" class="theme-toggle" id="theme-toggle">
+    🌙 Dark Mode
+</button>
+
+        <p style="text-align: right;">
+            <a href="/logout">Logout</a>
+        </p>
+
+        <form id="todo-form" action="/todos/add" method="POST" novalidate>
+            <label for="title">New task</label>
+            <input
+                type="text"
+                id="title"
+                name="title"
+                
+                required
+            >
+            <button type="submit">Add Task</button>
+        </form>
+
+        <hr>
+
+        {% if todos %}
+            {% for todo in todos %}
+                <div class="task">
+                    <p>
+                        {% if todo[2] %}
+                            <span class="completed">{{ todo[1] }}</span>
+                            — Completed
+                        {% else %}
+                            {{ todo[1] }}
+                        {% endif %}
+                    </p>
+
+                    <form action="/todos/toggle/{{ todo[0] }}" method="POST">
+                        <button type="submit">
+                            {% if todo[2] %}
+                                Mark Undone
+                            {% else %}
+                                Mark Done
+                            {% endif %}
+                        </button>
+                    </form>
+
+                    <form action="/todos/edit/{{ todo[0] }}" method="POST">
+                        <label for="edit-{{ todo[0] }}">Edit task</label>
+                        <input
+                            type="text"
+                            id="edit-{{ todo[0] }}"
+                            name="title"
+                            value="{{ todo[1] }}"
+                            
+                          
+                        >
+                        <button type="submit">Save Changes</button>
+                    </form>
+
+                    <form
+                        action="/todos/delete/{{ todo[0] }}"
+                        method="POST"
+                        onsubmit="return confirm('Are you sure you want to delete this task?');"
+                    >
+                        <button type="submit">Delete</button>
+                    </form>
+                </div>
+            {% endfor %}
+        {% else %}
+            <p class="empty-message">
+                You don't have any tasks yet. Add your first task above!
+            </p>
+        {% endif %}
+    </div>
+    <script src="{{ url_for('static', filename='validation.js') }}"></script>
+</body>
+</html>

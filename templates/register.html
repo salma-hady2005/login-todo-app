@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>Create an Account</h1>
+        <button type="button" class="theme-toggle" id="theme-toggle">
+    🌙 Dark Mode
+</button>
+
+       <form id="register-form" action="/register" method="POST" novalidate>
+    <label for="name">Name</label>
+    <input type="text" id="name" name="name">
+
+    <label for="email">Email</label>
+    <input type="email" id="email" name="email">
+
+    <label for="password">Password</label>
+    <input type="password" id="password" name="password">
+
+    <label for="confirm_password">Confirm Password</label>
+    <input type="password" id="confirm_password"
+           name="confirm_password">
+
+    <button type="submit">Register</button>
+</form>
+
+        <p>Already have an account? <a href="/login">Login</a></p>
+    </div>
+    <script>alert("JavaScript is working!");</script>
+    <script src="{{ url_for('static', filename='validation.js') }}"></script>
+</body>
+</html>
