@@ -99,6 +99,8 @@ Map each requirement below to the exact R-number and wording in the assignment.
 - [R8: Edit a to-do]
 - [R9: Delete a to-do]
 - [R10: Validation and user-specific data protection]
+- [R11: dark ,mode]
+
 
 Additional implemented details:
 - Client-side and server-side input validation
@@ -107,10 +109,7 @@ Additional implemented details:
 - Responsive layout for phone-sized screens
 
 Bonus features:
-- [List any bonus features completed, or write "None".]
-
-Note: Confirm the feature numbers and descriptions against the
-official R1–R10 requirements before submitting.
+- [dark mode.]
 
 
 
